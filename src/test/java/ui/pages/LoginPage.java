@@ -25,4 +25,6 @@ public class LoginPage extends CommenPage{
 
     @FindBy(xpath = "//button[text()='Accept all cookies']")
     public WebElement cookiesButton;
+
+    // Hallo
 }
