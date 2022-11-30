@@ -11,5 +11,5 @@ import org.junit.runner.RunWith;
         glue = "src/test/java/ui/stepDefinitions"
 )
 
-public class ui_FailedTestRunner {
+public class Ui_FailedTestRunner {
 }

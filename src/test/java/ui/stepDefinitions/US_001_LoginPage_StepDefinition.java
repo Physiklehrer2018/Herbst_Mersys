@@ -9,22 +9,23 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import ui.pages.LoginPage;
 import utils.ConfigurationReader;
 import utils.Driver;
-
 import java.time.Duration;
 
-public class Login_StepDefinition {
+//import static utils.Driver.driver;// Manuel ekledim.
 
-    WebDriverWait wait = new WebDriverWait(Driver.driver, Duration.ofSeconds(10));
+public class US_001_LoginPage_StepDefinition {
+
+    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
     LoginPage loginPage = new LoginPage();
 
     @Given("The user goes to homepage")
     public void theUserGoesToHomepage() {
-        Driver.driver.get(ConfigurationReader.getProperty("url_test"));
+        Driver.getDriver().get(ConfigurationReader.getProperty("url_test"));
     }
 
     @Then("The user verifies that the url is {string}")
     public void theUserVerifiesThatTheUrlIs(String url) {
-        Assert.assertEquals(url,Driver.driver.getCurrentUrl());
+        Assert.assertEquals(url,Driver.getDriver().getCurrentUrl());
         wait.until(ExpectedConditions.visibilityOf(loginPage.cookiesButton)).click();
     }
 

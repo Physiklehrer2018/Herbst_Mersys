@@ -11,7 +11,8 @@ import org.junit.runner.RunWith;
                   "rerun:target/rerun.txt"},
         features = "src/test/resources/uiFeatures",
         glue = "ui/stepDefinitions",
-        tags = "@smoke")
+        tags = "@smoke"
+)
 
-public class ui_Runner {
+public class Ui_Runner {
 }

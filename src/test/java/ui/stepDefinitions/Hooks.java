@@ -6,22 +6,23 @@ import io.cucumber.java.Scenario;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import utils.BrowserUtilities;
 import utils.Driver;
 import java.io.File;
 import java.time.Duration;
 
 public class Hooks {
 
-    public static WebDriver driver;
+   // public static WebDriver driver;
 
-    @Before
+    @Before  // burda kütüphane olarak cucumber secilmeli
     public void setUp() {
-        driver = Driver.getDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        driver.manage().window().maximize();
+     //   driver = Driver.getDriver();
+        Driver.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        Driver.getDriver().manage().window().maximize();
     }
 
-    @After
+    @After   // burda kütüphane olarak cucumber secilmeli
     public void tearDown(Scenario scenario) {
         if (scenario.isFailed()) {
             // take that screenshot
@@ -30,12 +31,12 @@ public class Hooks {
             scenario.attach(screenshot, "image/png", scenario.getName() + "_screenshot");
             TakesScreenshot takesScreenshot = (TakesScreenshot) Driver.getDriver();
             File source = takesScreenshot.getScreenshotAs(OutputType.FILE);
-            //ekran goruntusunun tam yeri
+            // full path to the screenshot location
             String target = System.getProperty("user.dir") + "/test.feature-output/Screenshots/"
                     + source.getName() + "png";
             File finalDestination = new File(target);
         }
-        //   BrowserUtilities.waitFor(3);
+        BrowserUtilities.waitFor(3);
         Driver.closeDriver();
     }
 }
